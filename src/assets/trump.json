@@ -1,0 +1,524 @@
+{
+    "textures": [
+        {
+            "image": "trump.png",
+            "format": "RGBA8888",
+            "size": {
+                "w": 471,
+                "h": 231
+            },
+            "scale": 1,
+            "frames": [
+                {
+                    "filename": "trump/trump_run-23.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 1,
+                        "y": 14,
+                        "w": 67,
+                        "h": 75
+                    },
+                    "frame": {
+                        "x": 1,
+                        "y": 1,
+                        "w": 67,
+                        "h": 75
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-22.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 0,
+                        "y": 17,
+                        "w": 68,
+                        "h": 73
+                    },
+                    "frame": {
+                        "x": 70,
+                        "y": 1,
+                        "w": 68,
+                        "h": 73
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-19.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 0,
+                        "y": 17,
+                        "w": 68,
+                        "h": 71
+                    },
+                    "frame": {
+                        "x": 140,
+                        "y": 1,
+                        "w": 68,
+                        "h": 71
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-20.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 2,
+                        "y": 14,
+                        "w": 66,
+                        "h": 73
+                    },
+                    "frame": {
+                        "x": 1,
+                        "y": 78,
+                        "w": 66,
+                        "h": 73
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-15.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 26,
+                        "y": 9,
+                        "w": 43,
+                        "h": 77
+                    },
+                    "frame": {
+                        "x": 1,
+                        "y": 153,
+                        "w": 43,
+                        "h": 77
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-17.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 30,
+                        "y": 13,
+                        "w": 42,
+                        "h": 77
+                    },
+                    "frame": {
+                        "x": 46,
+                        "y": 153,
+                        "w": 42,
+                        "h": 77
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-18.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 2,
+                        "y": 10,
+                        "w": 66,
+                        "h": 72
+                    },
+                    "frame": {
+                        "x": 210,
+                        "y": 1,
+                        "w": 66,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-21.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 3,
+                        "y": 11,
+                        "w": 65,
+                        "h": 72
+                    },
+                    "frame": {
+                        "x": 278,
+                        "y": 1,
+                        "w": 65,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-10.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 33,
+                        "y": 17,
+                        "w": 65,
+                        "h": 71
+                    },
+                    "frame": {
+                        "x": 345,
+                        "y": 1,
+                        "w": 65,
+                        "h": 71
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-4.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 25,
+                        "y": 20,
+                        "w": 58,
+                        "h": 70
+                    },
+                    "frame": {
+                        "x": 412,
+                        "y": 1,
+                        "w": 58,
+                        "h": 70
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-6.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 33,
+                        "y": 10,
+                        "w": 62,
+                        "h": 73
+                    },
+                    "frame": {
+                        "x": 69,
+                        "y": 78,
+                        "w": 62,
+                        "h": 73
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-12.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 31,
+                        "y": 9,
+                        "w": 43,
+                        "h": 76
+                    },
+                    "frame": {
+                        "x": 90,
+                        "y": 153,
+                        "w": 43,
+                        "h": 76
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-16.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 25,
+                        "y": 15,
+                        "w": 45,
+                        "h": 75
+                    },
+                    "frame": {
+                        "x": 133,
+                        "y": 76,
+                        "w": 45,
+                        "h": 75
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-13.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 30,
+                        "y": 15,
+                        "w": 46,
+                        "h": 76
+                    },
+                    "frame": {
+                        "x": 135,
+                        "y": 153,
+                        "w": 46,
+                        "h": 76
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-7.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 33,
+                        "y": 17,
+                        "w": 64,
+                        "h": 74
+                    },
+                    "frame": {
+                        "x": 180,
+                        "y": 75,
+                        "w": 64,
+                        "h": 74
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-8.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 33,
+                        "y": 14,
+                        "w": 63,
+                        "h": 75
+                    },
+                    "frame": {
+                        "x": 246,
+                        "y": 75,
+                        "w": 63,
+                        "h": 75
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-3.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 26,
+                        "y": 12,
+                        "w": 59,
+                        "h": 72
+                    },
+                    "frame": {
+                        "x": 183,
+                        "y": 151,
+                        "w": 59,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-9.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 32,
+                        "y": 11,
+                        "w": 64,
+                        "h": 72
+                    },
+                    "frame": {
+                        "x": 244,
+                        "y": 152,
+                        "w": 64,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-14.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 28,
+                        "y": 12,
+                        "w": 44,
+                        "h": 80
+                    },
+                    "frame": {
+                        "x": 311,
+                        "y": 75,
+                        "w": 44,
+                        "h": 80
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-11.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 33,
+                        "y": 15,
+                        "w": 63,
+                        "h": 72
+                    },
+                    "frame": {
+                        "x": 357,
+                        "y": 74,
+                        "w": 63,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-1.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 26,
+                        "y": 19,
+                        "w": 47,
+                        "h": 69
+                    },
+                    "frame": {
+                        "x": 422,
+                        "y": 73,
+                        "w": 47,
+                        "h": 69
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-2.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 25,
+                        "y": 16,
+                        "w": 57,
+                        "h": 72
+                    },
+                    "frame": {
+                        "x": 310,
+                        "y": 157,
+                        "w": 57,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-5.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 29,
+                        "y": 17,
+                        "w": 55,
+                        "h": 69
+                    },
+                    "frame": {
+                        "x": 369,
+                        "y": 148,
+                        "w": 55,
+                        "h": 69
+                    }
+                },
+                {
+                    "filename": "trump/trump_run-0.png",
+                    "rotated": false,
+                    "trimmed": true,
+                    "sourceSize": {
+                        "w": 100,
+                        "h": 100
+                    },
+                    "spriteSourceSize": {
+                        "x": 28,
+                        "y": 12,
+                        "w": 43,
+                        "h": 71
+                    },
+                    "frame": {
+                        "x": 426,
+                        "y": 144,
+                        "w": 43,
+                        "h": 71
+                    }
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "app": "https://www.codeandweb.com/texturepacker",
+        "version": "3.0",
+        "smartupdate": "$TexturePacker:SmartUpdate:9e29c0316ccb8661ff77a02b2a144284:446984d3bc2ffb39f52b60b19b41d2bc:409655cb2a0c2b60657ba8a3533ab280$"
+    }
+}

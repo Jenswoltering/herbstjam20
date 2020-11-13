@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "noImplicitAny": false,
+        "allowUnreachableCode": false,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "strictPropertyInitialization": false,
+        "lib": ["dom", "es5", "esnext"]
+    }
+}
