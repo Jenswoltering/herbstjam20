@@ -35,7 +35,11 @@ export default class WindowManager {
         this.windows.forEach((fenster) => {
             if (!fenster.checkOutOfViewport()) {
                 if (fenster.isConntrolledByUser(userId)) {
-                    fenster.openWindow()
+                    if (!fenster._isOpen) {
+                        fenster.openWindow()
+                    } else {
+                        fenster.closeWindow()
+                    }
                 }
             }
         })
@@ -50,12 +54,13 @@ export default class WindowManager {
             }
         })
         console.log(randompick)
+
         let connectedUsers = Array.from(this.colorManager.userColorAssociation.keys())
-        console.log(connectedUsers)
+        console.log('num-user', connectedUsers.length)
         // random
         for (let index = 0; index < connectedUsers.length; index++) {
             const changeColorOf = Phaser.Math.Between(0, randompick.length - 1)
-            console.log('change', randompick[changeColorOf])
+            console.log('change', randompick[changeColorOf], index)
             this.windows[randompick[changeColorOf]].controllPlayer(connectedUsers[index])
             this.windows[randompick[changeColorOf]].setTint(this.colorManager.getUserColorPhaser(connectedUsers[index]))
         }
@@ -91,9 +96,9 @@ export default class WindowManager {
                 this.addWindowsRandomEqualized
             }
         }
-        setInterval(() => {
+        /* setInterval(() => {
             this.randomWindowOwnership()
-        }, 3000)
+        }, 3000) */
     }
 
     update(ghostPosition: Phaser.Math.Vector2) {
@@ -111,21 +116,30 @@ export default class WindowManager {
             }
             this.time = this.posX + this.windowBaseInterval
         }
+        this.cleanUserAssignment()
+    }
+
+    cleanUserAssignment() {
+        this.windows.forEach((fenster, index) => {
+            if (fenster.checkOutOfViewport()) {
+                fenster.removePlayerControll()
+            }
+        })
     }
 
     addWindowsRandomEqualized() {
         if (this.windowThreshold + Phaser.Math.Between(100, 1000) < this.posX) {
             this.windowThreshold = this.posX
             var p1 = Phaser.Math.Between(50, 1000)
-            this.windows.push(new Window(this.scene, this.posX, p1))
+            this.windows.push(new Window(this.scene, this.posX, p1, this.colorManager.getUnassignedUser()))
 
             if (Phaser.Math.Between(0, 100) > 75) {
                 var p2 = Phaser.Math.Between(100, 1000)
-                this.windows.push(new Window(this.scene, this.posX, p2))
+                this.windows.push(new Window(this.scene, this.posX, p2, this.colorManager.getUnassignedUser()))
 
                 if (Phaser.Math.Between(0, 100) > 75) {
                     var p3 = Phaser.Math.Between(100, 1000)
-                    this.windows.push(new Window(this.scene, this.posX, p3))
+                    this.windows.push(new Window(this.scene, this.posX, p3, this.colorManager.getUnassignedUser()))
                 }
             }
         }
@@ -133,15 +147,36 @@ export default class WindowManager {
 
     addWindows3Lane() {
         if (this.topThreshold + Phaser.Math.Between(this.minDistance, this.maxDistance) < this.posX) {
-            this.windows.push(new Window(this.scene, this.posX, Phaser.Math.Between(this.lane1Top, this.lane1Top)))
+            this.windows.push(
+                new Window(
+                    this.scene,
+                    this.posX,
+                    Phaser.Math.Between(this.lane1Top, this.lane1Top),
+                    this.colorManager.getUnassignedUser()
+                )
+            )
             this.topThreshold = this.posX
         }
         if (this.windowThreshold + Phaser.Math.Between(this.minDistance, this.maxDistance) < this.posX) {
-            this.windows.push(new Window(this.scene, this.posX, Phaser.Math.Between(this.lane2top, this.lane2bot)))
+            this.windows.push(
+                new Window(
+                    this.scene,
+                    this.posX,
+                    Phaser.Math.Between(this.lane2top, this.lane2bot),
+                    this.colorManager.getUnassignedUser()
+                )
+            )
             this.windowThreshold = this.posX
         }
         if (this.bottomThreshold + Phaser.Math.Between(this.minDistance, this.maxDistance) < this.posX) {
-            this.windows.push(new Window(this.scene, this.posX, Phaser.Math.Between(this.lane3top, this.lane3bot)))
+            this.windows.push(
+                new Window(
+                    this.scene,
+                    this.posX,
+                    Phaser.Math.Between(this.lane3top, this.lane3bot),
+                    this.colorManager.getUnassignedUser()
+                )
+            )
             this.bottomThreshold = this.posX
         }
     }

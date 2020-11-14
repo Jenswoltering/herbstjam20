@@ -1,6 +1,6 @@
 import Window from './window'
 export default class Ghost extends Phaser.Physics.Arcade.Sprite {
-    _attractedANimation: Phaser.Animations.Animation | boolean
+    _attractedAnimation: Phaser.Animations.Animation | boolean
     _toCloseAnimation: Phaser.Animations.Animation | boolean
     _collideAnimation: Phaser.Animations.Animation | boolean
     _flyAnimation: Phaser.Animations.Animation | boolean
@@ -19,6 +19,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
 
         this._isAttracted = false
         this.generateAnimations()
+        this.playFlying()
     }
 
     controllPlayer(userId: string) {
@@ -50,12 +51,12 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
             suffix: '.png',
             zeroPad: 1,
         })
-        const attractFrames = this.anims.animationManager.generateFrameNames('trump', {
-            start: 6,
-            end: 11,
-            prefix: 'trump/trump_run-',
+        const attractFrames = this.anims.animationManager.generateFrameNames('animationen', {
+            start: 0,
+            end: 7,
+            prefix: 'caspairschnell/c_',
             suffix: '.png',
-            zeroPad: 1,
+            zeroPad: 2,
         })
         const toCloseFrames = this.anims.animationManager.generateFrameNames('trump', {
             start: 12,
@@ -64,12 +65,12 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
             suffix: '.png',
             zeroPad: 1,
         })
-        const flayFrames = this.anims.animationManager.generateFrameNames('trump', {
-            start: 1,
-            end: 1,
-            prefix: 'trump/trump_run-',
+        const flayFrames = this.anims.animationManager.generateFrameNames('animationen', {
+            start: 0,
+            end: 7,
+            prefix: 'caspair/sir_ghost_',
             suffix: '.png',
-            zeroPad: 1,
+            zeroPad: 5,
         })
 
         // ------------------------------------
@@ -82,7 +83,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
             repeat: -1,
         })
         this._flyAnimation = this.anims.animationManager.create({
-            key: 'trump-right',
+            key: 'ghost_fly',
             frames: flayFrames,
             frameRate: 20,
             repeat: -1,
@@ -99,8 +100,8 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
             frameRate: 20,
             repeat: -1,
         })
-        this._attractedANimation = this.anims.animationManager.create({
-            key: 'trump-idle',
+        this._attractedAnimation = this.anims.animationManager.create({
+            key: 'ghost_attracted',
             frames: attractFrames,
             frameRate: 20,
             repeat: -1,
@@ -115,8 +116,8 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
         this.anims.play(this._collectAnimation as Phaser.Animations.Animation, true)
     }
 
-    public palyAttract() {
-        this.anims.play(this._attractedANimation as Phaser.Animations.Animation, true)
+    public playAttract() {
+        this.anims.play(this._attractedAnimation as Phaser.Animations.Animation, true)
     }
 
     public playToClose() {
@@ -128,11 +129,13 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
     }
 
     public setAttractionPoint(point: Phaser.Math.Vector2) {
+        this.playAttract()
         this._isAttracted = true
         this._attractionPoint = point
     }
 
     public removeAttractionPoint() {
+        this.playFlying()
         this._isAttracted = false
         this._attractionPoint = null
     }

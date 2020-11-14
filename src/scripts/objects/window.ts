@@ -1,3 +1,5 @@
+import ColorManager from '../manager/colorManager'
+
 export default class Window extends Phaser.Physics.Arcade.Sprite {
     _openAnimation: Phaser.Animations.Animation | boolean
     _idleAnimation: Phaser.Animations.Animation | boolean
@@ -5,17 +7,24 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
     _windyAnimation: Phaser.Animations.Animation | boolean
     _isOpen: boolean
     _controlledByUser: string
+    colorManager: ColorManager
 
-    constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'window_closed')
+    constructor(scene: Phaser.Scene, x: number, y: number, assignUser?: string | null) {
+        super(scene, x, y, 'animationen', 'Fensterzu/window_01.png')
+        this.colorManager = ColorManager.getInstance()
         scene.add.existing(this)
         scene.physics.add.existing(this)
+        if (assignUser) {
+            this.controllPlayer(assignUser)
+        }
 
         this.generateAnimations()
     }
 
     controllPlayer(userId: string) {
         this._controlledByUser = userId
+        this.colorManager.setUserAssigned(userId)
+        this.setTint(this.colorManager.getUserColorPhaser(userId))
     }
     isConntrolledByUser(userId: string): boolean {
         if (this._controlledByUser == userId) {
@@ -25,27 +34,30 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         }
     }
     removePlayerControll() {
-        this._controlledByUser = ''
-        this.clearTint()
+        if (this._controlledByUser != '') {
+            this.colorManager.removeUserAssigned(this._controlledByUser)
+            this._controlledByUser = ''
+            this.clearTint()
+        }
     }
 
     private generateAnimations() {
         // --------------------------
         // SET FRAMES FOR ANIMATIONS
         // --------------------------
-        const openFrames = this.anims.animationManager.generateFrameNames('trump', {
-            start: 18,
-            end: 23,
-            prefix: 'trump/trump_run-',
+        const openFrames = this.anims.animationManager.generateFrameNames('animationen', {
+            start: 1,
+            end: 21,
+            prefix: 'fensterauf/fensterauf_',
             suffix: '.png',
-            zeroPad: 1,
+            zeroPad: 2,
         })
-        const closeFrames = this.anims.animationManager.generateFrameNames('trump', {
-            start: 0,
-            end: 5,
-            prefix: 'trump/trump_run-',
+        const closeFrames = this.anims.animationManager.generateFrameNames('animationen', {
+            start: 1,
+            end: 1,
+            prefix: 'Fensterzu/window_',
             suffix: '.png',
-            zeroPad: 1,
+            zeroPad: 2,
         })
         const windyFrames = this.anims.animationManager.generateFrameNames('trump', {
             start: 6,
@@ -54,6 +66,7 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
             suffix: '.png',
             zeroPad: 1,
         })
+
         const idleFrames = this.anims.animationManager.generateFrameNames('trump', {
             start: 12,
             end: 17,
@@ -78,8 +91,14 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
             repeat: -1,
         })
         this._closeAnimation = this.anims.animationManager.create({
-            key: 'trump-up',
+            key: 'close_fenster',
             frames: closeFrames,
+            frameRate: 20,
+            repeat: -1,
+        })
+        this._openAnimation = this.anims.animationManager.create({
+            key: 'open_window',
+            frames: openFrames,
             frameRate: 20,
             repeat: -1,
         })
@@ -87,22 +106,28 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
 
     openWindow() {
         this._isOpen = true
-        this.setTexture('window_open')
+        //this.setTexture('window_open')
+        this.playOpen()
+        //this.anims.play(this._openAnimation as Phaser.Animations.Animation, true)
         setTimeout(() => {
             this.closeWindow()
-        }, 4000)
+        }, 3000)
     }
     closeWindow() {
         this._isOpen = false
+        this.removePlayerControll()
+        this.playClose()
         this.clearTint()
-        this.setTexture('window_closed')
+        //this.setTexture('window_closed')
     }
 
     public playOpen() {
+        this.scene.sound.play('sound_window_open')
         this.anims.play(this._openAnimation as Phaser.Animations.Animation, true)
     }
 
     public playClose() {
+        this.scene.sound.play('sound_window_close')
         this.anims.play(this._closeAnimation as Phaser.Animations.Animation, true)
     }
 

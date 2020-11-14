@@ -4,6 +4,7 @@ export default class ColorManager {
     availableColors: Array<IFarben> = new Array()
     usedColors: Array<IFarben> = new Array()
     userColorAssociation: Map<string, IFarben> = new Map()
+    windowAssiged: Map<string, boolean> = new Map()
     private static instance: ColorManager
     private constructor() {
         // do something construct...
@@ -20,6 +21,25 @@ export default class ColorManager {
         return ColorManager.instance
     }
 
+    getUnassignedUser(): string | null {
+        let userWithoutWindow: string | null = null
+        this.windowAssiged.forEach((value, key) => {
+            if (value == false) {
+                userWithoutWindow = key
+            }
+        })
+        return userWithoutWindow
+    }
+    setUserAssigned(userId: string) {
+        if (this.windowAssiged.has(userId)) {
+            this.windowAssiged.set(userId, true)
+        }
+    }
+    removeUserAssigned(userId: string) {
+        if (this.windowAssiged.has(userId)) {
+            this.windowAssiged.set(userId, false)
+        }
+    }
     getAvailableColor(): IFarben | undefined {
         const color = this.availableColors.pop()
         if (color) {
@@ -39,7 +59,7 @@ export default class ColorManager {
         const color = this.getAvailableColor()
         if (color) {
             this.userColorAssociation.set(userID, color)
-
+            this.windowAssiged.set(userID, false)
             return color
         } else {
             return null
@@ -48,6 +68,7 @@ export default class ColorManager {
     removeUser(userID) {
         console.log(this.userColorAssociation)
         if (this.userColorAssociation.has(userID)) {
+            this.windowAssiged.delete(userID)
             const color = this.userColorAssociation.get(userID)!
             this.availableColors.push(color)
             //remove color from used colors
