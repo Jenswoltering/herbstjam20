@@ -1,6 +1,8 @@
+import { Vector } from 'matter'
 import Window from '../objects/window'
 
 const use3Lane = true
+const debuggingRun = true
 
 
 export default class WindowManager {
@@ -23,8 +25,6 @@ export default class WindowManager {
     lane3top = 800
     lane3bot = 950
 
-    
-
 
     constructor(scene: Phaser.Scene) {
         this.scene = scene
@@ -41,17 +41,34 @@ export default class WindowManager {
 
         // TODO: factor in Distance to Ghost and diminishing returns from multiple windows
 
-        var attractTo: Phaser.Math.Vector2 = ghostPostion
+        var attractTo: Phaser.Math.Vector2 = ghostPostion.clone()
         this.windows.forEach(fenster => {
-            if (/*fenster._isOpen &&*/ !fenster.checkOutOfViewport || true) {
-                var vect = fenster.getCenter(new Phaser.Math.Vector2)
-                attractTo.add(vect.subtract(ghostPostion))
+            if (/*fenster._isOpen &&*/ ! fenster.checkOutOfViewport()) {
+                var vect = fenster.getCenter(new Phaser.Math.Vector2).subtract(ghostPostion)
+                attractTo = attractTo.add(vect)
             }
         })
+
         return attractTo
     }
 
+    create() {
+        while (this.posX < this.scene.cameras.main.worldView.right) {
+            this.posX += this.windowBaseInterval
+            if (use3Lane) {
+                this.addWindows3Lane()
+            } else {
+                this.addWindowsRandomEqualized
+            }
+
+        }
+    }
+
     update(ghostPosition: Phaser.Math.Vector2) {
+
+        if (this.posX == 0) {
+            this.create()
+        }
 
         this.posX = this.scene.cameras.main.worldView.right
 
