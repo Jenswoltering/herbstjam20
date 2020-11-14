@@ -1,11 +1,14 @@
 import Trump from '../objects/trump'
 import screenable from '../../helpers/screenable-helper'
+import Ghost from '../objects/ghost'
+import Window from '../objects/window'
 //import Joystick from '@screenable/screenable/dist/types/core/controller/joystick'
 
 export default class MainScene extends Phaser.Scene {
     userInputs: Map<string, any> = new Map()
     players: Map<string, Trump> = new Map()
-
+    ghost: Ghost
+    window: Window
     unsubNewUser: () => void
     unsubUserLeft: () => void
     unsubJoystickMove: () => void
@@ -21,6 +24,22 @@ export default class MainScene extends Phaser.Scene {
                 fontSize: 24,
             })
             .setOrigin(1, 0)
+        this.cameras.main.setBounds(0, 0, 9999, 1080)
+
+        this.add.tileSprite(0, 0, 5000, 1080, 'brick').setOrigin(0, 0)
+        this.ghost = new Ghost(this, 50, 540)
+        this.window = new Window(this, 900, 200)
+
+        this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
+        setTimeout(() => {
+            this.window._isOpen = true
+            this.ghost.setAttractionPoint(this.window.body.position)
+            setTimeout(() => {
+                this.window._isOpen = false
+
+                this.ghost.removeAttractionPoint()
+            }, 2000)
+        }, 3000)
 
         // - - - - - - - - - -
         // SCREENABLE EVENTS
@@ -51,7 +70,7 @@ export default class MainScene extends Phaser.Scene {
         })
     }
 
-    movePlayers() {
+    /*  movePlayers() {
         this.players.forEach((player: Trump, playerUserId: string) => {
             this.userInputs.forEach((joystick: any, inputUserId: string) => {
                 if (joystick != '') {
@@ -61,8 +80,9 @@ export default class MainScene extends Phaser.Scene {
                 }
             })
         })
-    }
+    } */
     update() {
-        this.movePlayers()
+        /* this.movePlayers() */
+        this.ghost.update()
     }
 }
