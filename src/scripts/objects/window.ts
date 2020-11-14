@@ -7,7 +7,7 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
     _controlledByUser: string
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'window')
+        super(scene, x, y, 'window_closed')
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
@@ -16,6 +16,17 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
 
     controllPlayer(userId: string) {
         this._controlledByUser = userId
+    }
+    isConntrolledByUser(userId: string): boolean {
+        if (this._controlledByUser == userId) {
+            return true
+        } else {
+            return false
+        }
+    }
+    removePlayerControll() {
+        this._controlledByUser = ''
+        this.clearTint()
     }
 
     private generateAnimations() {
@@ -72,6 +83,19 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
             frameRate: 20,
             repeat: -1,
         })
+    }
+
+    openWindow() {
+        this._isOpen = true
+        this.setTexture('window_open')
+        setTimeout(() => {
+            this.closeWindow()
+        }, 4000)
+    }
+    closeWindow() {
+        this._isOpen = false
+        this.clearTint()
+        this.setTexture('window_closed')
     }
 
     public playOpen() {

@@ -92,10 +92,12 @@ export default class MainScene extends Phaser.Scene {
                 this.players.delete(user.userID)
             }
         })
-        this.unsubUserLeft = screenable.events.onJoystickMove.sub((user, joystick) => {
+        this.unsubJoystickMove = screenable.events.onButtonPress.sub((user, button) => {
             // Do whatever you want whenever a joystick is moved
             // you can access the user/userid and joystick by the passed user props
-            this.userInputs.set(user.userID, joystick)
+            console.log('button')
+            this.windowManager.userInput(user.userID)
+            //this.userInputs.set(user.userID, joystick)
         })
     }
 
@@ -133,11 +135,20 @@ export default class MainScene extends Phaser.Scene {
             this.expandWord()
         }
         //console.log(this.cameras.main.worldView.x)
-        this.ghost.update()
+
         this.window.update()
         this.windowManager.update(new Phaser.Math.Vector2())
-        this.ghost.setAttractionPoint(
-            this.windowManager.getAttractionPoint(this.ghost.getCenter(new Phaser.Math.Vector2()))
+        const newAttractionPoint = this.windowManager.getAttractionPoint(
+            this.ghost.getCenter(new Phaser.Math.Vector2())
         )
+        if (newAttractionPoint) {
+            this.ghost.setAttractionPoint(newAttractionPoint)
+        } else {
+            this.ghost.removeAttractionPoint()
+        }
+        this.ghost.update()
+        /* this.ghost.setAttractionPoint(
+            this.windowManager.getAttractionPoint(this.ghost.getCenter(new Phaser.Math.Vector2()))
+        ) */
     }
 }
