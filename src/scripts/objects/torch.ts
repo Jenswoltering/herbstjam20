@@ -1,13 +1,11 @@
-export default class Window extends Phaser.Physics.Arcade.Sprite {
-    _openAnimation: Phaser.Animations.Animation | boolean
-    _idleAnimation: Phaser.Animations.Animation | boolean
-    _closeAnimation: Phaser.Animations.Animation | boolean
-    _windyAnimation: Phaser.Animations.Animation | boolean
-    _isOpen: boolean
+export default class Torch extends Phaser.Physics.Arcade.Sprite {
+    _extinguishAnimation: Phaser.Animations.Animation | boolean
+    _burningAnimation: Phaser.Animations.Animation | boolean
+    _isOn: boolean
     _controlledByUser: string
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'window_closed')
+        super(scene, x, y, 'torch_burning')
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
@@ -65,60 +63,39 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         // ------------------------------------
         // CREATE ANIMATION WITH FRAMES AND KEY
         // ------------------------------------
-        this._windyAnimation = this.anims.animationManager.create({
+        this._burningAnimation = this.anims.animationManager.create({
             key: 'trump-down',
             frames: windyFrames,
             frameRate: 12,
             repeat: -1,
         })
-        this._idleAnimation = this.anims.animationManager.create({
+        this._extinguishAnimation = this.anims.animationManager.create({
             key: 'trump-right',
             frames: idleFrames,
             frameRate: 20,
             repeat: -1,
         })
-        this._closeAnimation = this.anims.animationManager.create({
-            key: 'trump-up',
-            frames: closeFrames,
-            frameRate: 20,
-            repeat: -1,
-        })
     }
 
-    openWindow() {
-        this._isOpen = true
-        this.setTexture('window_open')
+    lightTorch() {
+        this._isOn = true
+        this.setTexture('torch_on')
         setTimeout(() => {
-            this.closeWindow()
-        }, 2000)
+            this.extinguishTorch()
+        }, 4000)
     }
-    closeWindow() {
-        this._isOpen = false
+    extinguishTorch() {
+        this._isOn = false
         this.clearTint()
-        this.setTexture('window_closed')
-    }
-    toggleWindow() {
-        if (this._isOpen) {
-            this.closeWindow
-        } else {
-            this.openWindow
-        }
+        this.setTexture('torch_off')
     }
 
-    public playOpen() {
-        this.anims.play(this._openAnimation as Phaser.Animations.Animation, true)
+    public playExtinguish() {
+        this.anims.play(this._extinguishAnimation as Phaser.Animations.Animation, true)
     }
 
-    public playClose() {
-        this.anims.play(this._closeAnimation as Phaser.Animations.Animation, true)
-    }
-
-    public playWindy() {
-        this.anims.play(this._windyAnimation as Phaser.Animations.Animation, true)
-    }
-
-    public playIdle() {
-        this.anims.play(this._idleAnimation as Phaser.Animations.Animation, true)
+    public playBurn() {
+        this.anims.play(this._burningAnimation as Phaser.Animations.Animation, true)
     }
 
     public checkOutOfViewport(): boolean {
