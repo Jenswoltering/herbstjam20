@@ -1,0 +1,1133 @@
+{
+	"textures": [
+		{
+			"image": "eingesammelt.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1141,
+				"h": 1010
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Fackeleingesammelt_00162.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00163.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 1,
+						"y": 182,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00164.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 203,
+						"y": 1,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00165.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 1,
+						"y": 363,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00166.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 203,
+						"y": 182,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00167.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 405,
+						"y": 1,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00168.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 1,
+						"y": 544,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00169.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 203,
+						"y": 363,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00170.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 405,
+						"y": 182,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00171.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 607,
+						"y": 1,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00172.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 1,
+						"y": 725,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00160.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 63,
+						"w": 179,
+						"h": 103
+					},
+					"frame": {
+						"x": 1,
+						"y": 906,
+						"w": 179,
+						"h": 103
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00173.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 203,
+						"y": 544,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00174.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 405,
+						"y": 363,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00175.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 607,
+						"y": 182,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00176.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 809,
+						"y": 1,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00177.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 203,
+						"y": 725,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00178.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 21,
+						"w": 200,
+						"h": 179
+					},
+					"frame": {
+						"x": 405,
+						"y": 544,
+						"w": 200,
+						"h": 179
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00161.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 42,
+						"w": 200,
+						"h": 145
+					},
+					"frame": {
+						"x": 607,
+						"y": 363,
+						"w": 200,
+						"h": 145
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00179.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 809,
+						"y": 182,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00180.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 1011,
+						"y": 1,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00181.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 405,
+						"y": 725,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00182.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 607,
+						"y": 510,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00183.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 809,
+						"y": 303,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00184.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 920,
+						"y": 182,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00185.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 1031,
+						"y": 122,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00186.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 1031,
+						"y": 243,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00187.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 920,
+						"y": 303,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00188.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 52,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 1031,
+						"y": 364,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00189.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 49,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 516,
+						"y": 725,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00190.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 47,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 718,
+						"y": 510,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00191.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 44,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 405,
+						"y": 846,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00192.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 41,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 516,
+						"y": 846,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00157.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 46,
+						"y": 84,
+						"w": 105,
+						"h": 61
+					},
+					"frame": {
+						"x": 607,
+						"y": 631,
+						"w": 105,
+						"h": 61
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00193.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 38,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 627,
+						"y": 694,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00194.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 36,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 627,
+						"y": 815,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00158.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 46,
+						"y": 84,
+						"w": 105,
+						"h": 61
+					},
+					"frame": {
+						"x": 714,
+						"y": 631,
+						"w": 105,
+						"h": 61
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00195.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 33,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 738,
+						"y": 694,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00196.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 30,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 738,
+						"y": 815,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00159.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 46,
+						"y": 84,
+						"w": 105,
+						"h": 61
+					},
+					"frame": {
+						"x": 809,
+						"y": 424,
+						"w": 105,
+						"h": 61
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00197.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 28,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 829,
+						"y": 487,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00155.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 46,
+						"y": 84,
+						"w": 104,
+						"h": 61
+					},
+					"frame": {
+						"x": 916,
+						"y": 424,
+						"w": 104,
+						"h": 61
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00198.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 25,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 940,
+						"y": 487,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00156.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 46,
+						"y": 84,
+						"w": 104,
+						"h": 61
+					},
+					"frame": {
+						"x": 182,
+						"y": 906,
+						"w": 104,
+						"h": 61
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00199.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 22,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 849,
+						"y": 608,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00200.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 20,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 849,
+						"y": 729,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00201.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 17,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 960,
+						"y": 608,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00202.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 14,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 960,
+						"y": 729,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00203.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 11,
+						"w": 109,
+						"h": 119
+					},
+					"frame": {
+						"x": 849,
+						"y": 850,
+						"w": 109,
+						"h": 119
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00204.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 9,
+						"w": 109,
+						"h": 118
+					},
+					"frame": {
+						"x": 960,
+						"y": 850,
+						"w": 109,
+						"h": 118
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00205.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 3,
+						"h": 3
+					},
+					"frame": {
+						"x": 1122,
+						"y": 1,
+						"w": 3,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00206.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 3,
+						"h": 3
+					},
+					"frame": {
+						"x": 1122,
+						"y": 1,
+						"w": 3,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Fackeleingesammelt_00207.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 3,
+						"h": 3
+					},
+					"frame": {
+						"x": 1122,
+						"y": 1,
+						"w": 3,
+						"h": 3
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:c211062ea0bffbd8e9eead8f5210a78f:42666f119265c6aaac26e02abaf30a9e:88a903e5a706244808e726a7543cf23c$"
+	}
+}

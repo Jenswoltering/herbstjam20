@@ -5,8 +5,10 @@ export default class PreloadScene extends Phaser.Scene {
 
     preload() {
         this.load.setPath('assets/')
-        this.load.image('brick', 'img/brick.jpg')
+        this.load.image('brick', 'img/haunted_background.png')
         this.load.image('ghost', 'img/sir_ghost.png')
+        this.load.image('progressbar', 'img/progressbar.png')
+        this.load.multiatlas('plusone', 'plusone.json')
         this.load.image('window', 'img/window.png')
         this.load.multiatlas('trump', 'trump.json')
     }
