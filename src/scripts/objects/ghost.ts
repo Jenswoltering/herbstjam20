@@ -13,6 +13,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'ghost')
         scene.add.existing(this)
+        this.setDepth(90)
         scene.physics.add.existing(this)
         this.setCollideWorldBounds(true)
 

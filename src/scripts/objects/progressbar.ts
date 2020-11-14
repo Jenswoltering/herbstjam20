@@ -3,8 +3,10 @@ export default class Progressbar extends Phaser.Physics.Arcade.Sprite {
     progressBarBar: Phaser.GameObjects.Graphics
     constructor(scene: Phaser.Scene) {
         super(scene, 300, 100, 'progressbar')
+        this.setDepth(99)
         this.score = 0
         this.progressBarBar = this.scene.add.graphics().setScrollFactor(0)
+        this.progressBarBar.setDepth(98)
         scene.add.existing(this)
         scene.physics.add.existing(this)
         this.setScrollFactor(0)
