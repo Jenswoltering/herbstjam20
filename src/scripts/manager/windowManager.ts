@@ -45,6 +45,7 @@ export default class WindowManager {
         this.windows.forEach(fenster => {
             if (/*fenster._isOpen &&*/ ! fenster.checkOutOfViewport()) {
                 var vect = fenster.getCenter(new Phaser.Math.Vector2).subtract(ghostPostion)
+                vect.scale(1/vect.length())
                 attractTo = attractTo.add(vect)
             }
         })
@@ -72,16 +73,13 @@ export default class WindowManager {
 
         this.posX = this.scene.cameras.main.worldView.right
 
-        if (this.time > this.windowBaseInterval) {
+        if (this.posX > this.time) {
             if (use3Lane) {
                 this.addWindows3Lane()
             } else {
                 this.addWindowsRandomEqualized
             }
-            this.time = 0
-        }
-        else {
-            this.time++
+            this.time = this.posX + this.windowBaseInterval
         }
 
     }
