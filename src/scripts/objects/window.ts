@@ -90,5 +90,15 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         this.anims.play(this._idleAnimation as Phaser.Animations.Animation, true)
     }
 
-    update() {}
+    public checkOutOfViewport(): boolean {
+        if (this.scene.cameras.main.worldView.contains(this.body.x + 150, this.body.y)) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    update() {
+        this.checkOutOfViewport()
+    }
 }

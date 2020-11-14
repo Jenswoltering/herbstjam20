@@ -2,11 +2,13 @@ import Trump from '../objects/trump'
 import screenable from '../../helpers/screenable-helper'
 import Ghost from '../objects/ghost'
 import Window from '../objects/window'
+import WindowManager from '../manager/windowManager'
 //import Joystick from '@screenable/screenable/dist/types/core/controller/joystick'
 
 export default class MainScene extends Phaser.Scene {
     userInputs: Map<string, any> = new Map()
     players: Map<string, Trump> = new Map()
+    windowManager: WindowManager
     ghost: Ghost
     window: Window
     unsubNewUser: () => void
@@ -31,6 +33,7 @@ export default class MainScene extends Phaser.Scene {
         this.window = new Window(this, 900, 200)
 
         this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
+        this.windowManager = new WindowManager(this)
         setTimeout(() => {
             this.window._isOpen = true
             this.ghost.setAttractionPoint(this.window.body.position)
@@ -84,5 +87,6 @@ export default class MainScene extends Phaser.Scene {
     update() {
         /* this.movePlayers() */
         this.ghost.update()
+        this.window.update()
     }
 }
