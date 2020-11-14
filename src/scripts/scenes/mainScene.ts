@@ -56,15 +56,6 @@ export default class MainScene extends Phaser.Scene {
 
         this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
         this.windowManager = new WindowManager(this)
-        setTimeout(() => {
-            this.window._isOpen = true
-            this.ghost.setAttractionPoint(this.window.body.position)
-            setTimeout(() => {
-                this.window._isOpen = false
-
-                this.ghost.removeAttractionPoint()
-            }, 2000)
-        }, 3000)
         // - - - - - - - - - -
         // SCREENABLE EVENTS
         // - - - - - - - - - -
@@ -144,5 +135,9 @@ export default class MainScene extends Phaser.Scene {
         //console.log(this.cameras.main.worldView.x)
         this.ghost.update()
         this.window.update()
+        this.windowManager.update(new Phaser.Math.Vector2())
+        this.ghost.setAttractionPoint(
+            this.windowManager.getAttractionPoint(this.ghost.getCenter(new Phaser.Math.Vector2()))
+        )
     }
 }

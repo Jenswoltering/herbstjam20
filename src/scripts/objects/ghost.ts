@@ -141,8 +141,8 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
         if (this._isAttracted) {
             this.scene.physics.accelerateTo(this, this._attractionPoint!.x, this._attractionPoint!.y, 800)
         } else {
-            this._defaultAttraction = new Phaser.Math.Vector2(this.body.x + 100, 540)
-            this.scene.physics.accelerateTo(this, this._defaultAttraction!.x, this._defaultAttraction!.y, 80, 180, 60)
+            this._defaultAttraction = new Phaser.Math.Vector2(this.body.x + 500, 540)
+            this.scene.physics.accelerateTo(this, this._defaultAttraction!.x, this._defaultAttraction!.y, 200, 280, 160)
         }
     }
 }
