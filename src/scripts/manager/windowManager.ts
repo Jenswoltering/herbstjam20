@@ -1,32 +1,45 @@
 import { Vector } from 'matter'
 import Window from '../objects/window'
+import Torch from '../objects/torch'
 import ColorManager from './colorManager'
 
 const use3Lane = true
-const debuggingRun = true
 
 export default class WindowManager {
     scene: Phaser.Scene
     windows: Window[] = new Array()
+    torches: Torch[] = new Array()
+    torchCollisionGroup: Phaser.GameObjects.Group
+
     posX: number = 0
-    time: number = 0
+    steps: number = 0
     colorManager = ColorManager.getInstance()
     bottomThreshold: number = 0
     topThreshold: number = 0
     windowThreshold: number = 0
+    torchThreshold: number = 0
+
+    torchTopThreshold: number = 0
+    torchMiddleThreshold: number = 0
+    torchBotThreshold: number = 0
 
     windowBaseInterval = 20
     minDistance = 300
     maxDistance = 3000
-    lane1Top = 150
+    lane1top = 150
     lane1bot = 300
     lane2top = 450
     lane2bot = 650
     lane3top = 800
     lane3bot = 950
+    torchBoundary = 200
+    torchExtraDistTop = 200
+    torchExtraDistMid = 500
+    torchExtraDistBot = 200
 
     constructor(scene: Phaser.Scene) {
         this.scene = scene
+        this.torchCollisionGroup = this.scene.add.group()
         console.log('managercreate')
     }
 
@@ -108,13 +121,14 @@ export default class WindowManager {
 
         this.posX = this.scene.cameras.main.worldView.right
 
-        if (this.posX > this.time) {
+        if (this.posX > this.steps) {
             if (use3Lane) {
                 this.addWindows3Lane()
             } else {
                 this.addWindowsRandomEqualized
             }
-            this.time = this.posX + this.windowBaseInterval
+            this.steps = this.posX + this.windowBaseInterval
+            this.addTorch()
         }
         this.cleanUserAssignment()
     }
@@ -151,7 +165,7 @@ export default class WindowManager {
                 new Window(
                     this.scene,
                     this.posX,
-                    Phaser.Math.Between(this.lane1Top, this.lane1Top),
+                    Phaser.Math.Between(this.lane1top, this.lane1top),
                     this.colorManager.getUnassignedUser()
                 )
             )
@@ -178,6 +192,41 @@ export default class WindowManager {
                 )
             )
             this.bottomThreshold = this.posX
+        }
+    }
+
+    addTorch() {
+        if (this.torchTopThreshold + Phaser.Math.Between(this.minDistance, this.maxDistance) < this.posX) {
+            var p = Phaser.Math.Between(this.lane1top, this.lane1bot)
+            this.summonTorch(this.posX - this.torchBoundary, p)
+            this.torchTopThreshold = this.posX + Phaser.Math.Between(0, this.torchExtraDistTop)
+        }
+        if (this.torchMiddleThreshold + Phaser.Math.Between(this.minDistance, this.maxDistance) < this.posX) {
+            var p = Phaser.Math.Between(this.lane2top, this.lane2bot)
+            this.summonTorch(this.posX - this.torchBoundary, p)
+            this.torchMiddleThreshold = this.posX + Phaser.Math.Between(0, this.torchExtraDistMid)
+        }
+        if (this.torchBotThreshold + Phaser.Math.Between(this.minDistance, this.maxDistance) < this.posX) {
+            var p = Phaser.Math.Between(this.lane3top, this.lane3bot)
+            this.summonTorch(this.posX - this.torchBoundary, p)
+            this.torchBotThreshold = this.posX + Phaser.Math.Between(0, this.torchExtraDistBot)
+        }
+    }
+
+    summonTorch(torchX: number, torchY: number): boolean {
+        var validTorch = true
+        this.windows.forEach((fenster) => {
+            if (Phaser.Math.Distance.Between(fenster.x, fenster.y, torchX, torchY) < this.torchBoundary) {
+                validTorch = false
+            }
+        })
+        if (validTorch) {
+            const t = new Torch(this.scene, torchX, torchY)
+            this.torchCollisionGroup.add(t)
+            this.torches.push(t)
+            return true
+        } else {
+            return false
         }
     }
 }

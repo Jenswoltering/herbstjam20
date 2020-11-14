@@ -120,6 +120,13 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         this.clearTint()
         //this.setTexture('window_closed')
     }
+    toggleWindow() {
+        if (this._isOpen) {
+            this.closeWindow
+        } else {
+            this.openWindow
+        }
+    }
 
     public playOpen() {
         this.scene.sound.play('sound_window_open')

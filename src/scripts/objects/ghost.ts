@@ -20,6 +20,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
         this._isAttracted = false
         this.generateAnimations()
         this.playFlying()
+        //this.scene.physics.add.overlap(this,)
     }
 
     controllPlayer(userId: string) {

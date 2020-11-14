@@ -4,7 +4,7 @@
 			"image": "animationen.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 2020,
+				"w": 2023,
 				"h": 2822
 			},
 			"scale": 1,
@@ -94,7 +94,7 @@
 					}
 				},
 				{
-					"filename": "fackel/torch_on_1.png",
+					"filename": "fackel/torch_on_01.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -115,7 +115,28 @@
 					}
 				},
 				{
-					"filename": "fackel/torch_on_2.png",
+					"filename": "fackelaus/torch_off.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 128
+					},
+					"frame": {
+						"x": 1958,
+						"y": 1,
+						"w": 64,
+						"h": 128
+					}
+				},
+				{
+					"filename": "fackel/torch_on_02.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -220,7 +241,7 @@
 					}
 				},
 				{
-					"filename": "fackel/torch_on_3.png",
+					"filename": "fackel/torch_on_03.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1989,6 +2010,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d8a8198d07cf5a42b2496af8508532ef:b70814101eb5032569984e0f78d5de53:98b7684409212da80ba7506736cecc7b$"
+		"smartupdate": "$TexturePacker:SmartUpdate:3c05f0fbac74347d9b080b88993f8331:5de931e96e188ab971d011b1638522fa:98b7684409212da80ba7506736cecc7b$"
 	}
 }
