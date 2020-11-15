@@ -8,7 +8,7 @@ const use3Lane = true
 const spawnWebs = true
 const minWarmup = 1000
 const maxWarmup = 5000
-const offset = 0
+const offset = 500
 
 export default class WindowManager {
     scene: Phaser.Scene
@@ -178,6 +178,15 @@ export default class WindowManager {
                 fenster.removePlayerControll()
             }
         })
+
+        var tmpUser = this.colorManager.getUnassignedUser()
+        var tmpWindow = this.windows[0]
+        if (tmpUser != null) {
+            for (var n = 0; n < this.windows.length; n++) {
+                ((!this.windows[n].checkOutOfViewport()) && (!this.windows[n].isControlled())) ? tmpWindow = this.windows[n] : {}
+            }
+            tmpWindow.controllPlayer(tmpUser)
+        }
     }
 
     addWindowsRandomEqualized() {

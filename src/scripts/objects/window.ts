@@ -9,6 +9,7 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
     _controlledByUser: string
     _fog: Phaser.GameObjects.Sprite
     colorManager: ColorManager
+    controlled: boolean = false
 
     constructor(scene: Phaser.Scene, x: number, y: number, assignUser?: string | null) {
         super(scene, x, y, 'animationen', 'Fensterzu/window_01.png')
@@ -23,10 +24,15 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         this.generateAnimations()
     }
 
+    isControlled(): boolean {
+        return this.controlled
+    }
+
     controllPlayer(userId: string | null) {
         if (userId == null) {
             return
         }
+        this.controlled = true
         this._controlledByUser = userId
         this.colorManager.setUserAssigned(userId)
         this._fog.setAlpha(0.7)
@@ -42,6 +48,7 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
     }
     removePlayerControll() {
         if (this._controlledByUser != '') {
+            this.controlled = false
             this.colorManager.removeUserAssigned(this._controlledByUser)
             this._controlledByUser = ''
             this._fog.setAlpha(0)
