@@ -116,7 +116,9 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         this.playOpen()
         //this.anims.play(this._openAnimation as Phaser.Animations.Animation, true)
         setTimeout(() => {
-            this.closeWindow()
+            if (this._isOpen === true) {
+                this.closeWindow()
+            }
         }, 3000)
     }
     closeWindow() {

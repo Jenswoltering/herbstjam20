@@ -75,6 +75,7 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
     extinguishTorch() {
         this._isOn = false
         this.clearTint()
+        this.scene.sound.play('sound_fackeleingesammelt')
         this.playExtinguish()
         //this.setTexture('animationen', 'fackelaus/torch_off.png')
     }
