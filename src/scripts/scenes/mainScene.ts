@@ -6,6 +6,7 @@ import WindowManager from '../manager/windowManager'
 import Progressbar from '../objects/progressbar'
 import IFarben from '../manager/farben.interface'
 import ColorManager from '../manager/colorManager'
+import Torch from '../objects/torch'
 //import Joystick from '@screenable/screenable/dist/types/core/controller/joystick'
 
 export default class MainScene extends Phaser.Scene {
@@ -41,21 +42,16 @@ export default class MainScene extends Phaser.Scene {
         this.ghost = new Ghost(this, 50, 540)
         this.window = new Window(this, 900, 200)
         this.progress = new Progressbar(this)
-        setTimeout(() => {
-            this.scroreUpdate()
-            setTimeout(() => {
-                this.scroreUpdate()
-                setTimeout(() => {
-                    this.scroreUpdate()
-                    setTimeout(() => {
-                        this.scroreUpdate()
-                    }, 2000)
-                }, 2000)
-            }, 2000)
-        }, 2000)
 
         this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
         this.windowManager = new WindowManager(this)
+        this.physics.add.overlap(
+            this.ghost,
+            this.windowManager.getTorchOverlapGroup(),
+            this.handleTorchOverlap,
+            undefined,
+            this
+        )
         // - - - - - - - - - -
         // SCREENABLE EVENTS
         // - - - - - - - - - -
@@ -101,6 +97,15 @@ export default class MainScene extends Phaser.Scene {
         })
     }
 
+    handleTorchOverlap(ghost, torch) {
+        const tmpGhost = ghost as Ghost
+        const tmpTorch = torch as Torch
+        if (tmpTorch._isOn) {
+            this.progress.plusOne()
+            torch.extinguishTorch()
+            console.log('overlap')
+        }
+    }
     expandWord() {
         this.cameras.main.setBounds(0, 0, this.cameras.main.getBounds().width + 4000, 1080)
         if (this.BGused % 2) {

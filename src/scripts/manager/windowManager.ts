@@ -42,6 +42,9 @@ export default class WindowManager {
         this.torchCollisionGroup = this.scene.add.group()
         console.log('managercreate')
     }
+    getTorchOverlapGroup(): Phaser.GameObjects.Group {
+        return this.torchCollisionGroup
+    }
 
     userInput(userId: string) {
         // open window if user id matches

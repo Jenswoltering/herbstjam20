@@ -8,7 +8,8 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, 'animationen', 'fackel/torch_on_01.png')
         scene.add.existing(this)
         scene.physics.add.existing(this)
-
+        this.body.setSize(50, 70)
+        this._isOn = true
         this.generateAnimations()
         this.playBurn()
     }
@@ -40,9 +41,9 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
             zeroPad: 2,
         })
         const extinguishFrames = this.anims.animationManager.generateFrameNames('animationen', {
-            start: 0,
-            end: 5,
-            prefix: 'trump/trump_run-',
+            start: 1,
+            end: 1,
+            prefix: 'fackelaus/torch_off_',
             suffix: '.png',
             zeroPad: 1,
         })
@@ -59,7 +60,7 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
         this._extinguishAnimation = this.anims.animationManager.create({
             key: 'torch_extinguish',
             frames: extinguishFrames,
-            frameRate: 20,
+            frameRate: 1,
             repeat: -1,
         })
     }
@@ -74,11 +75,13 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
     extinguishTorch() {
         this._isOn = false
         this.clearTint()
-        this.setTexture('animationen', 'fackelaus/torch_off.png')
+        this.playExtinguish()
+        //this.setTexture('animationen', 'fackelaus/torch_off.png')
     }
 
     public playExtinguish() {
-        this.setTexture('animationen', 'fackelaus/torch_off.png')
+        this.anims.play(this._extinguishAnimation as Phaser.Animations.Animation, true)
+        //this.setTexture('animationen', 'fackelaus/torch_off.png')
         //this.anims.play(this._extinguishAnimation as Phaser.Animations.Animation, true)
     }
 
