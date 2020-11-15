@@ -8,13 +8,14 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
     breaking = 20
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'web')
+        super(scene, x, y, 'spiderweb')
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
         //this.generateAnimations()
         //this.playIdle()
         this._isBroken = false
+        this.body.setSize(120, 120)
     }
 
     controllPlayer(userId: string) {
@@ -55,7 +56,7 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
         // CREATE ANIMATION WITH FRAMES AND KEY
         // ------------------------------------
         this._idleAnimation = this.anims.animationManager.create({
-            key: 'web',
+            key: 'spiderweb',
             frames: bruningFrames,
             frameRate: 8,
             repeat: -1,
@@ -69,15 +70,14 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
     }
 
     breakWeb(): boolean {
-        console.log("web breaking: " + this.breaking)
+        console.log('web breaking: ' + this.breaking)
         if (this.breaking <= 0) {
             this._isBroken = true
             this.clearTint()
-            this.setTint(0xff0000)
-            this.setTexture('web')
+            // this.setTint(0xff0000)
+            this.setTexture('spiderweb_ripped')
             return false
-        }
-        else {
+        } else {
             this.breaking--
             return true
         }
