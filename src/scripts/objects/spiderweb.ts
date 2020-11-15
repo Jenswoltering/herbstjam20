@@ -1,17 +1,20 @@
-export default class Torch extends Phaser.Physics.Arcade.Sprite {
-    _extinguishAnimation: Phaser.Animations.Animation | boolean
-    _burningAnimation: Phaser.Animations.Animation | boolean
-    _isOn: boolean
+export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
+    _idleAnimation: Phaser.Animations.Animation | boolean
+    _breakAnimation: Phaser.Animations.Animation | boolean
+    _isBroken: boolean
     _controlledByUser: string
 
+    slowdown = 0.5
+    breaking = 20
+
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        super(scene, x, y, 'animationen', 'fackel/torch_on_01.png')
+        super(scene, x, y, 'web')
         scene.add.existing(this)
         scene.physics.add.existing(this)
-        this.body.setSize(80, 120)
-        this._isOn = true
-        this.generateAnimations()
-        this.playBurn()
+
+        //this.generateAnimations()
+        //this.playIdle()
+        this._isBroken = false
     }
 
     controllPlayer(userId: string) {
@@ -41,9 +44,9 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
             zeroPad: 2,
         })
         const extinguishFrames = this.anims.animationManager.generateFrameNames('animationen', {
-            start: 1,
-            end: 1,
-            prefix: 'fackelaus/torch_off_',
+            start: 0,
+            end: 5,
+            prefix: 'trump/trump_run-',
             suffix: '.png',
             zeroPad: 1,
         })
@@ -51,43 +54,42 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
         // ------------------------------------
         // CREATE ANIMATION WITH FRAMES AND KEY
         // ------------------------------------
-        this._burningAnimation = this.anims.animationManager.create({
-            key: 'torch_burn',
+        this._idleAnimation = this.anims.animationManager.create({
+            key: 'web',
             frames: bruningFrames,
             frameRate: 8,
             repeat: -1,
         })
-        this._extinguishAnimation = this.anims.animationManager.create({
+        this._breakAnimation = this.anims.animationManager.create({
             key: 'torch_extinguish',
             frames: extinguishFrames,
-            frameRate: 1,
+            frameRate: 20,
             repeat: -1,
         })
     }
 
-    lightTorch() {
-        this._isOn = true
-        //this.setTexture('torch_on')
-        setTimeout(() => {
-            this.extinguishTorch()
-        }, 4000)
-    }
-    extinguishTorch() {
-        this._isOn = false
-        this.clearTint()
-        this.scene.sound.play('sound_fackeleingesammelt')
-        this.playExtinguish()
-        //this.setTexture('animationen', 'fackelaus/torch_off.png')
+    breakWeb(): boolean {
+        console.log("web breaking: " + this.breaking)
+        if (this.breaking <= 0) {
+            this._isBroken = true
+            this.clearTint()
+            this.setTint(0xff0000)
+            this.setTexture('web')
+            return false
+        }
+        else {
+            this.breaking--
+            return true
+        }
     }
 
-    public playExtinguish() {
-        this.anims.play(this._extinguishAnimation as Phaser.Animations.Animation, true)
-        //this.setTexture('animationen', 'fackelaus/torch_off.png')
+    public playBreak() {
+        this.setTexture('animationen', 'fackelaus/torch_off.png')
         //this.anims.play(this._extinguishAnimation as Phaser.Animations.Animation, true)
     }
 
-    public playBurn() {
-        this.anims.play(this._burningAnimation as Phaser.Animations.Animation, true)
+    public playIdle() {
+        this.anims.play(this._idleAnimation as Phaser.Animations.Animation, true)
     }
 
     public checkOutOfViewport(): boolean {

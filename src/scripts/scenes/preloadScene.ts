@@ -15,6 +15,7 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image('spiderweb_ripped', 'img/spiderweb_ripped.png')
         this.load.image('end_bg', 'img/end_bg.jpg')
         this.load.image('window_open', 'img/window_opaque_open.png')
+        this.load.image('web', 'img/web.png')
         this.load.multiatlas('animationen', 'animationen.json')
         this.load.multiatlas('trump', 'trump.json')
         this.load.audio('sound_window_open', 'sounds/fensterauf.mp3')

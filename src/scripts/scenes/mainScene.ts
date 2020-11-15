@@ -7,6 +7,7 @@ import Progressbar from '../objects/progressbar'
 import IFarben from '../manager/farben.interface'
 import ColorManager from '../manager/colorManager'
 import Torch from '../objects/torch'
+import SpiderWeb from '../objects/spiderweb'
 //import Joystick from '@screenable/screenable/dist/types/core/controller/joystick'
 
 export default class MainScene extends Phaser.Scene {
@@ -54,6 +55,14 @@ export default class MainScene extends Phaser.Scene {
             undefined,
             this
         )
+        this.physics.add.overlap(
+            this.ghost,
+            this.windowManager.getWebOverlapGroup(),
+            this.handleWebOverlap,
+            undefined,
+            this
+        )
+
         // - - - - - - - - - -
         // SCREENABLE EVENTS
         // - - - - - - - - - -
@@ -108,6 +117,18 @@ export default class MainScene extends Phaser.Scene {
             console.log('overlap')
         }
     }
+
+    handleWebOverlap(ghost, web) {
+        const tmpGhost = ghost as Ghost
+        const tmpWeb = web as SpiderWeb
+        if (!tmpWeb._isBroken) {
+            web.breakWeb() ?
+                this.ghost.body.velocity.scale(web.slowdown) :
+                this.progress.minusOne()
+            console.log('overlap')
+        }
+    }
+
     expandWord() {
         this.cameras.main.setBounds(0, 0, this.cameras.main.getBounds().width + 4000, 1080)
         if (this.BGused % 2) {
