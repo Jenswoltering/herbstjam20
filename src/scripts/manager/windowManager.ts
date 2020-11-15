@@ -20,9 +20,9 @@ export default class WindowManager {
 
     colorManager = ColorManager.getInstance()
 
-    windowTopThreshold: number = 0
-    windowMidThreshold: number = 0
-    windowBotThreshold: number = 0
+    windowTopThreshold: number = -offset
+    windowMidThreshold: number = -offset
+    windowBotThreshold: number = -offset
     windowBaseInterval = 20
     windowMinDistance = 300
     windowMaxDistance = 3000
@@ -137,6 +137,7 @@ export default class WindowManager {
 
     create() {
         while (this.posX < this.scene.cameras.main.worldView.right) {
+            console.log(this.posX)
             this.posX += this.windowBaseInterval
             if (use3Lane) {
                 this.addWindows3Lane()

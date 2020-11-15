@@ -18,7 +18,7 @@ export default class MainScene extends Phaser.Scene {
     windowManager: WindowManager
     progress: Progressbar
     ghost: Ghost
-    window: Window
+    //window: Window
     wallBG1: Phaser.GameObjects.TileSprite
     wallBG2: Phaser.GameObjects.TileSprite
     colorManger: ColorManager
@@ -32,8 +32,8 @@ export default class MainScene extends Phaser.Scene {
         super({ key: 'MainScene' })
     }
 
-    scroreUpdate() {
-        this.progress.plusOne()
+    scoreUpdate() {
+        this.progress.plusOne(1)
     }
 
     create() {
@@ -43,7 +43,7 @@ export default class MainScene extends Phaser.Scene {
         this.wallBG1 = this.add.tileSprite(0, 0, 4000, 1080, 'brick').setOrigin(0, 0)
         this.BGused = 1
         this.ghost = new Ghost(this, 50, 540)
-        this.window = new Window(this, 900, 200)
+        //this.window = new Window(this, 900, 200)
         this.progress = new Progressbar(this)
 
         this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
@@ -112,9 +112,7 @@ export default class MainScene extends Phaser.Scene {
         const tmpGhost = ghost as Ghost
         const tmpTorch = torch as Torch
         if (tmpTorch._isOn) {
-            for (let n = 0; n < torch.getPoints(); n++) {
-                this.progress.plusOne()
-            }
+            this.progress.plusOne(torch.getPoints())
             torch.extinguishTorch()
             console.log('overlap')
         }
@@ -167,7 +165,7 @@ export default class MainScene extends Phaser.Scene {
             }
             //console.log(this.cameras.main.worldView.x)
 
-            this.window.update()
+            //this.window.update()
             this.windowManager.update(new Phaser.Math.Vector2())
             const newAttractionPoint = this.windowManager.getAttractionPoint(
                 this.ghost.getCenter(new Phaser.Math.Vector2())
@@ -183,7 +181,7 @@ export default class MainScene extends Phaser.Scene {
         ) */
 
             // WINNING
-            if (this.progress.getScore() == 10) {
+            if (this.progress.getScoreDifference() <= 0) {
                 //this.colorManger.removeAllUser()
 
                 this.isTerminating = true

@@ -2,6 +2,9 @@ export default class Progressbar extends Phaser.Physics.Arcade.Sprite {
     score: number
     progressBarBar: Phaser.GameObjects.Graphics
     _shadows: Phaser.Animations.Animation | boolean
+
+    targetScore = 15
+
     constructor(scene: Phaser.Scene) {
         super(scene, 200, 100, 'progressbar')
         this.setDepth(99)
@@ -28,12 +31,13 @@ export default class Progressbar extends Phaser.Physics.Arcade.Sprite {
         this.setScrollFactor(0)
     }
 
-    public plusOne() {
-        if (this.score <= 10) {
-            this.score++
+    public plusOne(bonus: number) {
+        if (this.score <= this.targetScore) {
+            this.score += bonus
+            this.score > this.targetScore ? this.score = this.targetScore : {}
             this.progressBarBar.clear()
             this.progressBarBar.fillStyle(0xb6eef2, 1)
-            this.progressBarBar.fillRect(54, 100, (300 / 10) * this.score, 37)
+            this.progressBarBar.fillRect(54, 100, (300 / this.targetScore) * this.score, 37)
         }
     }
 
@@ -42,11 +46,15 @@ export default class Progressbar extends Phaser.Physics.Arcade.Sprite {
             this.score--
             this.progressBarBar.clear()
             this.progressBarBar.fillStyle(0xb6eef2, 1)
-            this.progressBarBar.fillRect(54, 100, (300 / 10) * this.score, 37)
+            this.progressBarBar.fillRect(54, 100, (300 / this.targetScore) * this.score, 37)
         }
     }
     public getScore(): number {
         return this.score
+    }
+
+    public getScoreDifference(): number {
+        return this.targetScore - this.score
     }
     update() {}
 }
