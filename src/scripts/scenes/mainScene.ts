@@ -112,7 +112,9 @@ export default class MainScene extends Phaser.Scene {
         const tmpGhost = ghost as Ghost
         const tmpTorch = torch as Torch
         if (tmpTorch._isOn) {
-            this.progress.plusOne()
+            for (let n = 0; n < torch.getPoints(); n++) {
+                this.progress.plusOne()
+            }
             torch.extinguishTorch()
             console.log('overlap')
         }

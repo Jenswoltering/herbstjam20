@@ -8,6 +8,7 @@ const use3Lane = true
 const spawnWebs = true
 const minWarmup = 1000
 const maxWarmup = 5000
+const offset = 500
 
 export default class WindowManager {
     scene: Phaser.Scene
@@ -53,7 +54,7 @@ export default class WindowManager {
     webMinDistance = 100
     webMaxDistance = 1000
 
-    posX: number = 0
+    posX: number = -offset
     steps: number = 0
     lane1top = 150
     lane1bot = 250
@@ -149,7 +150,7 @@ export default class WindowManager {
     }
 
     update(ghostPosition: Phaser.Math.Vector2) {
-        if (this.posX == 0) {
+        if (this.posX <= 0) {
             this.create()
         }
 
@@ -201,7 +202,7 @@ export default class WindowManager {
             this.windows.push(
                 new Window(
                     this.scene,
-                    this.posX,
+                    this.posX + offset,
                     Phaser.Math.Between(this.lane1top, this.lane1top),
                     this.colorManager.getUnassignedUser()
                 )
@@ -212,7 +213,7 @@ export default class WindowManager {
             this.windows.push(
                 new Window(
                     this.scene,
-                    this.posX,
+                    this.posX + offset,
                     Phaser.Math.Between(this.lane2top, this.lane2bot),
                     this.colorManager.getUnassignedUser()
                 )
@@ -223,7 +224,7 @@ export default class WindowManager {
             this.windows.push(
                 new Window(
                     this.scene,
-                    this.posX,
+                    this.posX + offset,
                     Phaser.Math.Between(this.lane3top, this.lane3bot),
                     this.colorManager.getUnassignedUser()
                 )
@@ -235,17 +236,17 @@ export default class WindowManager {
     addTorch() {
         if (this.torchTopThreshold + Phaser.Math.Between(this.torchMinDistance, this.torchMaxDistance) < this.posX) {
             var p = Phaser.Math.Between(this.lane1top, this.lane1bot)
-            this.summonTorch(this.posX - this.torchWindowBoundary, p) ?
+            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p) ?
                 this.torchTopThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningTop, this.torchExtraDistTop)) : {}
         }
         if (this.torchMidThreshold + Phaser.Math.Between(this.torchMinDistance, this.torchMaxDistance) < this.posX) {
             var p = Phaser.Math.Between(this.lane2top, this.lane2bot)
-            this.summonTorch(this.posX - this.torchWindowBoundary, p) ?
+            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p) ?
                 this.torchMidThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningMid, this.torchExtraDistMid)) : {}
         }
         if (this.torchBotThreshold + Phaser.Math.Between(this.torchMinDistance, this.torchMaxDistance) < this.posX) {
             var p = Phaser.Math.Between(this.lane3top, this.lane3bot)
-            this.summonTorch(this.posX - this.torchWindowBoundary, p) ?
+            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p) ?
                 this.torchBotThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningBot, this.torchExtraDistBot)) : {}
         }
     }
@@ -270,19 +271,19 @@ export default class WindowManager {
     addWeb() {
         if (this.webTopThreshold + Phaser.Math.Between(this.webMinDistance, this.webMaxDistance) < this.posX) {
             let p = Phaser.Math.Between(this.lane1top, this.lane1bot)
-            if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary, p)) {
+            if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary + offset, p)) {
                 this.webTopThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningTop, this.webExtraDistTop))
             }
         }
         if (this.webMidThreshold + Phaser.Math.Between(this.webMinDistance, this.webMaxDistance) < this.posX) {
             let p = Phaser.Math.Between(this.lane2top, this.lane2bot)
-            if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary, p)) {
+            if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary + offset, p)) {
                 this.webMidThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningMid, this.webExtraDistMid))
             }
         }
         if (this.webBotThreshold + Phaser.Math.Between(this.webMinDistance, this.webMaxDistance) < this.posX) {
             let p = Phaser.Math.Between(this.lane3top, this.lane3bot)
-            if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary, p)) {
+            if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary + offset, p)) {
                 this.webBotThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningBot, this.webExtraDistBot))
             }
         }

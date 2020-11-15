@@ -4,6 +4,8 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
     _isOn: boolean
     _controlledByUser: string
 
+    points = 1
+
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'animationen', 'fackel/torch_on_01.png')
         scene.add.existing(this)
@@ -12,6 +14,24 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
         this._isOn = true
         this.generateAnimations()
         this.playBurn()
+
+
+        this.color()
+    }
+
+    color() {
+        var random = Phaser.Math.Between(1, 100)
+        if (random <= 5) {
+            this.setTint(0xff00ff)
+            this.points = 3
+        } else if (random <= 15) {
+            this.setTint(0x00ffff)
+            this.points = 2
+        }
+    }
+
+    getPoints(): number {
+        return this.points
     }
 
     controllPlayer(userId: string) {

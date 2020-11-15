@@ -1,5 +1,5 @@
 import Screenable from '@screenable/screenable'
-let screenable = new Screenable('RM7MK9Q-VJG4CPD-JR9FWS6-3QR1XP3')
+let screenable = new Screenable('5H970HK-J7X4EZC-Q157V1B-BB6DWSN')
 
 export default screenable
 
