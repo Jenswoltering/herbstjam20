@@ -10,8 +10,16 @@ export default class ColorManager {
         // do something construct...
         const red: IFarben = { screenableColor: 'red', phaserColor: 0xff0000 }
         const green: IFarben = { screenableColor: 'green', phaserColor: 0x00ff00 }
+        const purple: IFarben = { screenableColor: 'purple', phaserColor: 0x9c27b0 }
+        const blue: IFarben = { screenableColor: 'blue', phaserColor: 0x2196f3 }
+        const lime: IFarben = { screenableColor: 'lime', phaserColor: 0xcddc39 }
+        const amber: IFarben = { screenableColor: 'amber', phaserColor: 0xffc107 }
+
         this.availableColors.push(red)
         this.availableColors.push(green)
+        this.availableColors.push(purple)
+        this.availableColors.push(blue)
+        this.availableColors.push(lime)
     }
     static getInstance() {
         if (!ColorManager.instance) {
@@ -19,6 +27,14 @@ export default class ColorManager {
             // ... any one time initialization goes here ...
         }
         return ColorManager.instance
+    }
+
+    removeAllUser() {
+        let connectedUsers = Array.from(this.userColorAssociation.keys())
+        connectedUsers.forEach((user) => {
+            console.log('remove', user, this.getUserColorPhaser(user))
+            this.removeUser(user)
+        })
     }
 
     getUnassignedUser(): string | null {
@@ -66,8 +82,9 @@ export default class ColorManager {
         }
     }
     removeUser(userID) {
-        console.log(this.userColorAssociation)
+        //console.log(this.userColorAssociation)
         if (this.userColorAssociation.has(userID)) {
+            console.log('deleting')
             this.windowAssiged.delete(userID)
             const color = this.userColorAssociation.get(userID)!
             this.availableColors.push(color)

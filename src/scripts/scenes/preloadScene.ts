@@ -10,6 +10,8 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image('progressbar', 'img/progressbar.png')
         this.load.multiatlas('plusone', 'plusone.json')
         this.load.image('window_closed', 'img/window_opaque_closed.png')
+        this.load.image('menu_bg', 'img/menu_bg.jpg')
+        this.load.image('end_bg', 'img/end_bg.jpg')
         this.load.image('window_open', 'img/window_opaque_open.png')
         this.load.multiatlas('animationen', 'animationen.json')
         this.load.multiatlas('trump', 'trump.json')
@@ -18,7 +20,7 @@ export default class PreloadScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('MainScene')
+        this.scene.start('StartScene')
 
         /**
          * This is how you would dynamically import the mainScene class (with code splitting),
