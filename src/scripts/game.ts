@@ -1,5 +1,7 @@
 import 'phaser'
 import MainScene from './scenes/mainScene'
+import StartScene from './scenes/startScene'
+import EndScene from './scenes/endScene'
 import PreloadScene from './scenes/preloadScene'
 
 const DEFAULT_WIDTH = 1920
@@ -15,7 +17,7 @@ const config: Phaser.Types.Core.GameConfig = {
         width: DEFAULT_WIDTH,
         height: DEFAULT_HEIGHT,
     },
-    scene: [PreloadScene, MainScene],
+    scene: [PreloadScene, StartScene, MainScene, EndScene],
     physics: {
         default: 'arcade',
         arcade: {

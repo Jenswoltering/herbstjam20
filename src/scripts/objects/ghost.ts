@@ -14,7 +14,10 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, 'ghost')
         scene.add.existing(this)
         this.setDepth(90)
+
         scene.physics.add.existing(this)
+
+        this.setCircle(40, 20, 20)
         this.setCollideWorldBounds(true)
 
         this._isAttracted = false
@@ -67,11 +70,11 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
             zeroPad: 1,
         })
         const flayFrames = this.anims.animationManager.generateFrameNames('animationen', {
-            start: 0,
-            end: 7,
-            prefix: 'caspair/sir_ghost_',
+            start: 1,
+            end: 4,
+            prefix: 'caspair/harold_',
             suffix: '.png',
-            zeroPad: 5,
+            zeroPad: 1,
         })
 
         // ------------------------------------
@@ -86,7 +89,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
         this._flyAnimation = this.anims.animationManager.create({
             key: 'ghost_fly',
             frames: flayFrames,
-            frameRate: 20,
+            frameRate: 8,
             repeat: -1,
         })
         this._collectAnimation = this.anims.animationManager.create({
@@ -144,7 +147,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
     update() {
         //super.update()
         if (this._isAttracted) {
-            this.scene.physics.accelerateTo(this, this._attractionPoint!.x, this._attractionPoint!.y, 1000)
+            this.scene.physics.moveTo(this, this._attractionPoint!.x, this._attractionPoint!.y, 1000)
         } else {
             this._defaultAttraction = new Phaser.Math.Vector2(this.body.x + 500, 540)
             this.scene.physics.accelerateTo(this, this._defaultAttraction!.x, this._defaultAttraction!.y, 100, 280, 160)

@@ -7,10 +7,12 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
     _windyAnimation: Phaser.Animations.Animation | boolean
     _isOpen: boolean
     _controlledByUser: string
+    _fog: Phaser.GameObjects.Sprite
     colorManager: ColorManager
 
     constructor(scene: Phaser.Scene, x: number, y: number, assignUser?: string | null) {
         super(scene, x, y, 'animationen', 'Fensterzu/window_01.png')
+        this._fog = this.scene.add.sprite(x, y, 'animationen', 'nebel/window_fog.png').setAlpha(0)
         this.colorManager = ColorManager.getInstance()
         scene.add.existing(this)
         scene.physics.add.existing(this)
@@ -24,7 +26,9 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
     controllPlayer(userId: string) {
         this._controlledByUser = userId
         this.colorManager.setUserAssigned(userId)
-        this.setTint(this.colorManager.getUserColorPhaser(userId))
+        this._fog.setAlpha(0.7)
+        this._fog.setTint(this.colorManager.getUserColorPhaser(userId))
+        //this.setTint(this.colorManager.getUserColorPhaser(userId))
     }
     isConntrolledByUser(userId: string): boolean {
         if (this._controlledByUser == userId) {
@@ -37,7 +41,9 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         if (this._controlledByUser != '') {
             this.colorManager.removeUserAssigned(this._controlledByUser)
             this._controlledByUser = ''
-            this.clearTint()
+            this._fog.setAlpha(0)
+            this._fog.clearTint()
+            //
         }
     }
 

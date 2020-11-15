@@ -6,6 +6,7 @@ import WindowManager from '../manager/windowManager'
 import Progressbar from '../objects/progressbar'
 import IFarben from '../manager/farben.interface'
 import ColorManager from '../manager/colorManager'
+import Torch from '../objects/torch'
 //import Joystick from '@screenable/screenable/dist/types/core/controller/joystick'
 
 export default class MainScene extends Phaser.Scene {
@@ -21,6 +22,7 @@ export default class MainScene extends Phaser.Scene {
     wallBG2: Phaser.GameObjects.TileSprite
     colorManger: ColorManager
     BGused: number
+    isTerminating: boolean
     unsubNewUser: () => void
     unsubUserLeft: () => void
     unsubJoystickMove: () => void
@@ -34,6 +36,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.isTerminating = false
         this.cameras.main.setBounds(0, 0, 4000, 1080)
         this.colorManger = ColorManager.getInstance()
         this.wallBG1 = this.add.tileSprite(0, 0, 4000, 1080, 'brick').setOrigin(0, 0)
@@ -41,21 +44,16 @@ export default class MainScene extends Phaser.Scene {
         this.ghost = new Ghost(this, 50, 540)
         this.window = new Window(this, 900, 200)
         this.progress = new Progressbar(this)
-        setTimeout(() => {
-            this.scroreUpdate()
-            setTimeout(() => {
-                this.scroreUpdate()
-                setTimeout(() => {
-                    this.scroreUpdate()
-                    setTimeout(() => {
-                        this.scroreUpdate()
-                    }, 2000)
-                }, 2000)
-            }, 2000)
-        }, 2000)
 
         this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
         this.windowManager = new WindowManager(this)
+        this.physics.add.overlap(
+            this.ghost,
+            this.windowManager.getTorchOverlapGroup(),
+            this.handleTorchOverlap,
+            undefined,
+            this
+        )
         // - - - - - - - - - -
         // SCREENABLE EVENTS
         // - - - - - - - - - -
@@ -76,9 +74,9 @@ export default class MainScene extends Phaser.Scene {
             }
             setTimeout(() => {}, 1000)
             //screenable.controller.sendScore(user, 's1', 'brown-6', '0', '0')
-            const newTrumpPlayer = new Trump(this, 100, 100)
-            newTrumpPlayer.controllPlayer(user.userID)
-            this.players.set(user.userID, newTrumpPlayer)
+            //const newTrumpPlayer = new Trump(this, 100, 100)
+            //newTrumpPlayer.controllPlayer(user.userID)
+            //this.players.set(user.userID, newTrumpPlayer)
         })
         this.unsubUserLeft = screenable.events.onUserLeft.sub((user) => {
             // Do whatever you want whenever a user leaves
@@ -101,6 +99,15 @@ export default class MainScene extends Phaser.Scene {
         })
     }
 
+    handleTorchOverlap(ghost, torch) {
+        const tmpGhost = ghost as Ghost
+        const tmpTorch = torch as Torch
+        if (tmpTorch._isOn) {
+            this.progress.plusOne()
+            torch.extinguishTorch()
+            console.log('overlap')
+        }
+    }
     expandWord() {
         this.cameras.main.setBounds(0, 0, this.cameras.main.getBounds().width + 4000, 1080)
         if (this.BGused % 2) {
@@ -130,25 +137,55 @@ export default class MainScene extends Phaser.Scene {
         })
     } */
     update() {
-        /* this.movePlayers() */
-        if (this.cameras.main.worldView.x > this.cameras.main.getBounds().width - 2000) {
-            this.expandWord()
-        }
-        //console.log(this.cameras.main.worldView.x)
+        if (!this.isTerminating) {
+            /* this.movePlayers() */
+            if (this.cameras.main.worldView.x > this.cameras.main.getBounds().width - 2000) {
+                this.expandWord()
+            }
+            //console.log(this.cameras.main.worldView.x)
 
-        this.window.update()
-        this.windowManager.update(new Phaser.Math.Vector2())
-        const newAttractionPoint = this.windowManager.getAttractionPoint(
-            this.ghost.getCenter(new Phaser.Math.Vector2())
-        )
-        if (newAttractionPoint) {
-            this.ghost.setAttractionPoint(newAttractionPoint)
-        } else {
-            this.ghost.removeAttractionPoint()
-        }
-        this.ghost.update()
-        /* this.ghost.setAttractionPoint(
+            this.window.update()
+            this.windowManager.update(new Phaser.Math.Vector2())
+            const newAttractionPoint = this.windowManager.getAttractionPoint(
+                this.ghost.getCenter(new Phaser.Math.Vector2())
+            )
+            if (newAttractionPoint) {
+                this.ghost.setAttractionPoint(newAttractionPoint)
+            } else {
+                this.ghost.removeAttractionPoint()
+            }
+            this.ghost.update()
+            /* this.ghost.setAttractionPoint(
             this.windowManager.getAttractionPoint(this.ghost.getCenter(new Phaser.Math.Vector2()))
         ) */
+
+            // WINNING
+            if (this.progress.getScore() == 10) {
+                //this.colorManger.removeAllUser()
+
+                this.isTerminating = true
+                this.unsubNewUser()
+                this.unsubUserLeft()
+                this.unsubJoystickMove()
+                this.scene.transition({
+                    target: 'EndScene',
+                    duration: 1,
+                    sleep: false,
+                })
+            }
+
+            if (screenable.countOnlineUsers() == 0) {
+                this.isTerminating = true
+                this.unsubNewUser()
+                this.unsubUserLeft()
+                this.unsubJoystickMove()
+                //this.scene.start('StartScene')
+                this.scene.transition({
+                    target: 'StartScene',
+                    duration: 1,
+                    sleep: false,
+                })
+            }
+        }
     }
 }
