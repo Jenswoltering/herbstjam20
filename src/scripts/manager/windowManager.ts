@@ -68,8 +68,13 @@ export default class WindowManager {
         this.webCollisionGroup = this.scene.add.group()
         console.log('managercreate')
     }
+
     getTorchOverlapGroup(): Phaser.GameObjects.Group {
         return this.torchCollisionGroup
+    }
+
+    getWebOverlapGroup(): Phaser.GameObjects.Group {
+        return this.webCollisionGroup
     }
 
     userInput(userId: string) {

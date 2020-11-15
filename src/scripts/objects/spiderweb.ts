@@ -4,6 +4,9 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
     _isBroken: boolean
     _controlledByUser: string
 
+    slowdown = 0.5
+    breaking = 20
+
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'web')
         scene.add.existing(this)
@@ -12,9 +15,6 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
         //this.generateAnimations()
         //this.playIdle()
         this._isBroken = false
-        setTimeout(() => {
-            this.breakWeb()
-        }, 2000)
     }
 
     controllPlayer(userId: string) {
@@ -68,11 +68,19 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
         })
     }
 
-    breakWeb () {
-        this._isBroken = true
-        this.clearTint()
-        this.setTint(0xff0000)
-        this.setTexture('web')
+    breakWeb(): boolean {
+        console.log("web breaking: " + this.breaking)
+        if (this.breaking <= 0) {
+            this._isBroken = true
+            this.clearTint()
+            this.setTint(0xff0000)
+            this.setTexture('web')
+            return false
+        }
+        else {
+            this.breaking--
+            return true
+        }
     }
 
     public playBreak() {

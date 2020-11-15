@@ -8,7 +8,7 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, 'animationen', 'fackel/torch_on_01.png')
         scene.add.existing(this)
         scene.physics.add.existing(this)
-        this.body.setSize(50, 70)
+        this.body.setSize(80, 120)
         this._isOn = true
         this.generateAnimations()
         this.playBurn()
