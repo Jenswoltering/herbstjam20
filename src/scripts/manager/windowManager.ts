@@ -8,7 +8,7 @@ const use3Lane = true
 const spawnWebs = true
 const minWarmup = 1000
 const maxWarmup = 5000
-const offset = 500
+const offset = 0
 
 export default class WindowManager {
     scene: Phaser.Scene

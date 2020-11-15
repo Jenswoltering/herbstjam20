@@ -23,7 +23,10 @@ export default class Window extends Phaser.Physics.Arcade.Sprite {
         this.generateAnimations()
     }
 
-    controllPlayer(userId: string) {
+    controllPlayer(userId: string | null) {
+        if (userId == null) {
+            return
+        }
         this._controlledByUser = userId
         this.colorManager.setUserAssigned(userId)
         this._fog.setAlpha(0.7)
