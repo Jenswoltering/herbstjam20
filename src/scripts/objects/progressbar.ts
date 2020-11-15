@@ -30,19 +30,19 @@ export default class Progressbar extends Phaser.Physics.Arcade.Sprite {
 
     public plusOne() {
         if (this.score <= 10) {
+            this.score++
             this.progressBarBar.clear()
             this.progressBarBar.fillStyle(0xb6eef2, 1)
             this.progressBarBar.fillRect(54, 100, (300 / 10) * this.score, 37)
-            this.score++
         }
     }
 
     public minusOne() {
         if (this.score > 0) {
+            this.score--
             this.progressBarBar.clear()
             this.progressBarBar.fillStyle(0xb6eef2, 1)
             this.progressBarBar.fillRect(54, 100, (300 / 10) * this.score, 37)
-            this.score--
         }
     }
     public getScore(): number {
