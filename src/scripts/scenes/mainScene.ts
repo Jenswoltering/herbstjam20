@@ -8,6 +8,7 @@ import IFarben from '../manager/farben.interface'
 import ColorManager from '../manager/colorManager'
 import Torch from '../objects/torch'
 import SpiderWeb from '../objects/spiderweb'
+import ScoreIndicator from '../objects/scoreIndicator'
 //import Joystick from '@screenable/screenable/dist/types/core/controller/joystick'
 
 export default class MainScene extends Phaser.Scene {
@@ -16,6 +17,7 @@ export default class MainScene extends Phaser.Scene {
     unusedColors: Array<IFarben> = new Array()
     players: Map<string, Trump> = new Map()
     windowManager: WindowManager
+    scoreIndicator: ScoreIndicator
     progress: Progressbar
     ghost: Ghost
     //window: Window
@@ -45,7 +47,7 @@ export default class MainScene extends Phaser.Scene {
         this.ghost = new Ghost(this, 50, 540)
         //this.window = new Window(this, 900, 200)
         this.progress = new Progressbar(this)
-
+        this.scoreIndicator = new ScoreIndicator(this, 500, 500)
         this.cameras.main.startFollow(this.ghost, true, 0.8, 0.8, -700, 0)
         this.windowManager = new WindowManager(this)
         this.physics.add.overlap(
@@ -102,7 +104,7 @@ export default class MainScene extends Phaser.Scene {
         this.unsubJoystickMove = screenable.events.onButtonPress.sub((user, button) => {
             // Do whatever you want whenever a joystick is moved
             // you can access the user/userid and joystick by the passed user props
-            console.log('button')
+            //console.log('button')
             this.windowManager.userInput(user.userID)
             //this.userInputs.set(user.userID, joystick)
         })
@@ -113,8 +115,17 @@ export default class MainScene extends Phaser.Scene {
         const tmpTorch = torch as Torch
         if (tmpTorch._isOn) {
             this.progress.plusOne(torch.getPoints())
+            if (tmpTorch.getPoints() == 1) {
+                this.scoreIndicator.showPlusOne(tmpGhost.body.position)
+            }
+            if (tmpTorch.getPoints() == 2) {
+                this.scoreIndicator.showPlusTwo(tmpGhost.body.position)
+            }
+            if (tmpTorch.getPoints() == 3) {
+                this.scoreIndicator.showPlusThree(tmpGhost.body.position)
+            }
             torch.extinguishTorch()
-            console.log('overlap')
+            //console.log('overlap')
         }
     }
 
@@ -122,10 +133,9 @@ export default class MainScene extends Phaser.Scene {
         const tmpGhost = ghost as Ghost
         const tmpWeb = web as SpiderWeb
         if (!tmpWeb._isBroken) {
-            web.breakWeb() ?
-                this.ghost.body.velocity.scale(web.slowdown) :
-                this.progress.minusOne()
-            console.log('overlap')
+            this.scoreIndicator.showMinusOne(tmpGhost.body.position)
+            web.breakWeb() ? this.ghost.body.velocity.scale(web.slowdown) : this.progress.minusOne()
+            //console.log('overlap')
         }
     }
 

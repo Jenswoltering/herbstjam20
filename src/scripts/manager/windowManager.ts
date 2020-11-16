@@ -43,16 +43,18 @@ export default class WindowManager {
     webTopThreshold: number = Phaser.Math.Between(minWarmup, maxWarmup)
     webMidThreshold: number = Phaser.Math.Between(minWarmup, maxWarmup)
     webBotThreshold: number = Phaser.Math.Between(minWarmup, maxWarmup)
-    webWindowBoundary = 120
-    webTorchBoundary = 200
+    webWindowBoundary = 330
+    webTorchBoundary = 350
     webExtraDistTop = 2000
     webExtraDistMid = 5000
     webExtraDistBot = 2000
     webFlatteningTop = 300
     webFlatteningMid = 300
     webFlatteningBot = 300
-    webMinDistance = 100
+    webMinDistance = 500
     webMaxDistance = 1000
+    maxSameWeb = 2
+    numPlacedWebs = 0
 
     posX: number = -offset
     steps: number = 0
@@ -137,7 +139,7 @@ export default class WindowManager {
 
     create() {
         while (this.posX < this.scene.cameras.main.worldView.right) {
-            console.log(this.posX)
+            //console.log(this.posX)
             this.posX += this.windowBaseInterval
             if (use3Lane) {
                 this.addWindows3Lane()
@@ -183,7 +185,9 @@ export default class WindowManager {
         var tmpWindow = this.windows[0]
         if (tmpUser != null) {
             for (var n = 0; n < this.windows.length; n++) {
-                ((!this.windows[n].checkOutOfViewport()) && (!this.windows[n].isControlled())) ? tmpWindow = this.windows[n] : {}
+                !this.windows[n].checkOutOfViewport() && !this.windows[n].isControlled()
+                    ? (tmpWindow = this.windows[n])
+                    : {}
             }
             tmpWindow.controllPlayer(tmpUser)
         }
@@ -246,18 +250,24 @@ export default class WindowManager {
     addTorch() {
         if (this.torchTopThreshold + Phaser.Math.Between(this.torchMinDistance, this.torchMaxDistance) < this.posX) {
             var p = Phaser.Math.Between(this.lane1top, this.lane1bot)
-            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p) ?
-                this.torchTopThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningTop, this.torchExtraDistTop)) : {}
+            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p)
+                ? (this.torchTopThreshold =
+                      this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningTop, this.torchExtraDistTop)))
+                : {}
         }
         if (this.torchMidThreshold + Phaser.Math.Between(this.torchMinDistance, this.torchMaxDistance) < this.posX) {
             var p = Phaser.Math.Between(this.lane2top, this.lane2bot)
-            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p) ?
-                this.torchMidThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningMid, this.torchExtraDistMid)) : {}
+            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p)
+                ? (this.torchMidThreshold =
+                      this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningMid, this.torchExtraDistMid)))
+                : {}
         }
         if (this.torchBotThreshold + Phaser.Math.Between(this.torchMinDistance, this.torchMaxDistance) < this.posX) {
             var p = Phaser.Math.Between(this.lane3top, this.lane3bot)
-            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p) ?
-                this.torchBotThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningBot, this.torchExtraDistBot)) : {}
+            this.summonTorch(this.posX - this.torchWindowBoundary + offset, p)
+                ? (this.torchBotThreshold =
+                      this.posX + Math.max(0, Phaser.Math.Between(this.torchFlatteningBot, this.torchExtraDistBot)))
+                : {}
         }
     }
 
@@ -282,21 +292,25 @@ export default class WindowManager {
         if (this.webTopThreshold + Phaser.Math.Between(this.webMinDistance, this.webMaxDistance) < this.posX) {
             let p = Phaser.Math.Between(this.lane1top, this.lane1bot)
             if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary + offset, p)) {
-                this.webTopThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningTop, this.webExtraDistTop))
+                this.webTopThreshold =
+                    this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningTop, this.webExtraDistTop))
             }
         }
         if (this.webMidThreshold + Phaser.Math.Between(this.webMinDistance, this.webMaxDistance) < this.posX) {
             let p = Phaser.Math.Between(this.lane2top, this.lane2bot)
             if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary + offset, p)) {
-                this.webMidThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningMid, this.webExtraDistMid))
+                this.webMidThreshold =
+                    this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningMid, this.webExtraDistMid))
             }
         }
         if (this.webBotThreshold + Phaser.Math.Between(this.webMinDistance, this.webMaxDistance) < this.posX) {
             let p = Phaser.Math.Between(this.lane3top, this.lane3bot)
             if (this.summonWeb(this.posX - this.webTorchBoundary - this.torchWindowBoundary + offset, p)) {
-                this.webBotThreshold = this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningBot, this.webExtraDistBot))
+                this.webBotThreshold =
+                    this.posX + Math.max(0, Phaser.Math.Between(this.webFlatteningBot, this.webExtraDistBot))
             }
         }
+        this.numPlacedWebs = 0
     }
 
     summonWeb(webX: number, webY: number): boolean {
@@ -311,10 +325,11 @@ export default class WindowManager {
                 validWeb = false
             }
         })
-        if (validWeb) {
+        if (validWeb && this.numPlacedWebs <= this.maxSameWeb) {
             const w = new SpiderWeb(this.scene, webX, webY)
             this.webCollisionGroup.add(w)
             this.webs.push(w)
+            this.numPlacedWebs++
             return true
         } else {
             return false

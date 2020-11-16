@@ -16,11 +16,13 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image('end_bg', 'img/end_bg.jpg')
         this.load.image('window_open', 'img/window_opaque_open.png')
         this.load.image('web', 'img/web.png')
+        this.load.image('already_open', 'img/Bereitsoffen.png')
         this.load.multiatlas('animationen', 'animationen.json')
         this.load.multiatlas('trump', 'trump.json')
         this.load.audio('sound_window_open', 'sounds/fensterauf.mp3')
         this.load.audio('sound_window_close', 'sounds/fensterzu.mp3')
         this.load.audio('sound_fackeleingesammelt', 'sounds/fackeleingesammelt.mp3')
+        this.load.audio('web_broken', 'sounds/spinnennetz.mp3')
     }
 
     create() {

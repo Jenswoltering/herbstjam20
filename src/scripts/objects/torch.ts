@@ -15,7 +15,6 @@ export default class Torch extends Phaser.Physics.Arcade.Sprite {
         this.generateAnimations()
         this.playBurn()
 
-
         this.color()
     }
 

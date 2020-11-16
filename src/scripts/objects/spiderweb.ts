@@ -70,11 +70,12 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
     }
 
     breakWeb(): boolean {
-        console.log('web breaking: ' + this.breaking)
+        //console.log('web breaking: ' + this.breaking)
         if (this.breaking <= 0) {
             this._isBroken = true
             this.clearTint()
             // this.setTint(0xff0000)
+            this.scene.sound.play('web_broken')
             this.setTexture('spiderweb_ripped')
             return false
         } else {
@@ -85,6 +86,7 @@ export default class SpiderWeb extends Phaser.Physics.Arcade.Sprite {
 
     public playBreak() {
         this.setTexture('animationen', 'fackelaus/torch_off.png')
+        this.scene.sound.play('web_broken')
         //this.anims.play(this._extinguishAnimation as Phaser.Animations.Animation, true)
     }
 

@@ -107,7 +107,7 @@ export default class Ghost extends Phaser.Physics.Arcade.Sprite {
         this._attractedAnimation = this.anims.animationManager.create({
             key: 'ghost_attracted',
             frames: attractFrames,
-            frameRate: 20,
+            frameRate: 6,
             repeat: -1,
         })
     }
